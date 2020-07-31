@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://mj:mj@test.gzzv0.mongodb.net/chat?retryWrites=true&w=majority",
+    "jwtSecret": "manish"
+}
