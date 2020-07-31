@@ -1,4 +1,7 @@
 const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
+
 const connectDB = require("./config/db");
 
 const app = express();
@@ -6,7 +9,11 @@ const app = express();
 //Connect Database
 connectDB();
 
+//CORS
+app.use(cors());
+
 //INIT Middleware
+app.use(morgan("dev"));
 app.use(express.json({ extended: false }));
 
 // Define Routes

@@ -21,7 +21,7 @@ router.get("/", auth, async (req, res) => {
       { $group: { _id: "$channel", count: { $sum: 1 } } },
       { $sort: { count: -1 } },
     ]);
-    return res.json({ count: posts.length, posts });
+    return res.json({ posts });
   } catch (error) {
     console.log(error.message);
     res.status(500).send("Server Error!!");

@@ -51,7 +51,7 @@ router.post(
 router.get("/", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
-    const channels = await Channel.find().sort({ created_at: -1 });
+    const channels = await Channel.find().sort({ createdAt: -1 });
     return res.json(channels);
   } catch (error) {
     console.log(error.message);
@@ -243,7 +243,7 @@ router.post(
 router.get("/", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
-    const channels = await Channel.find().sort({ created_at: -1 });
+    const channels = await Channel.find().sort({ createdAt: -1 });
     return res.json(channels);
   } catch (error) {
     console.log(error.message);
