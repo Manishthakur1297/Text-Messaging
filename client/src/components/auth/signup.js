@@ -128,7 +128,7 @@ class Signup extends Component {
           password: this.state.formData.password,
           region: this.state.formData.region,
         });
-        console.log(res);
+        // console.log(res);
         window.location.href = "/";
       } catch (error) {
         throw error;

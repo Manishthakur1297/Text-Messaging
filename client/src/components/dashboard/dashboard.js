@@ -74,7 +74,7 @@ const Chat = () => {
   //   useEffect(scrollToBottom, [posts]);
 
   const inviteUser = () => (e) => {
-    console.log("Clicked");
+    // console.log("Clicked");
     setShow(true);
   };
 

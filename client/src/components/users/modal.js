@@ -17,7 +17,7 @@ class CustomModal extends Component{
 
     componentDidMount(){
         this.setState({users:this.props.user})
-        console.log(this.props.user)
+        // console.log(this.props.user)
     }
 
     hide = () => {
@@ -68,7 +68,7 @@ class CustomModal extends Component{
     updateUser = (async event => {
         event.preventDefault();
         try {
-            console.log(this.state.users)
+            // console.log(this.state.users)
             const res = await axiosInstance.put(`/users/${this.state.users.id}/`, {
                 //id: [].concat(this.state.users.id),
                 name: [].concat(this.state.users.name),
@@ -77,7 +77,7 @@ class CustomModal extends Component{
                 password: [].concat(this.state.users.password)
 
             });
-            console.log(res)
+            // console.log(res)
             this.props.hide()
             //window.location.href = '/'
             //return res;

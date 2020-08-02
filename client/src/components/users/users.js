@@ -19,21 +19,19 @@ class User extends Component {
 
   getUsers = () => {
     try {
-      axiosInstance
-        .get("/users/")
-        .then((res) => {
-          console.log(res.data);
-          let data = [].concat(res.data);
-          this.setState({ users: data });
-        })
-        .catch((error) => console.log(error));
+      axiosInstance.get("/users/").then((res) => {
+        // console.log(res.data);
+        let data = [].concat(res.data);
+        this.setState({ users: data });
+      });
+      // .catch((error) => console.log(error));
     } catch (error) {
       throw error;
     }
   };
 
   userClicked = (user) => {
-    console.log(user);
+    // console.log(user);
     this.setState({ selecteduser: user });
     this.setState({ show: true });
   };

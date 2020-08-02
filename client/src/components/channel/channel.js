@@ -33,7 +33,7 @@ class Channel extends Component {
       axiosInstance
         .get("/users/")
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           let data = [].concat(res.data);
           this.setState({ users: data });
         })

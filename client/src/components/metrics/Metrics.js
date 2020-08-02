@@ -23,7 +23,7 @@ const Metrics = () => {
       } else {
         setTop5Results(data);
         setLoading(false);
-        console.log(top5Results);
+        // console.log(top5Results);
       }
     });
   };

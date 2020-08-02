@@ -72,7 +72,7 @@ class Login extends Component {
           password: this.state.formData.password,
           // data:this.state.formData
         });
-        console.log(res);
+        // console.log(res);
         //console.log(res.data.access, res.data.refresh)
         axiosInstance.defaults.headers["x-auth-token"] = res.data.token;
         localStorage.setItem("token", res.data.token);

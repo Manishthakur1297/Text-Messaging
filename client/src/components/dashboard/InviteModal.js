@@ -9,7 +9,7 @@ import { axiosInstance } from "../service/axiosApi";
 class InviteModal extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    // console.log(props);
     this.state = {
       users: [],
       formData: {}, // Contains form data
@@ -27,11 +27,11 @@ class InviteModal extends Component {
       axiosInstance
         .get("/users/")
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           let data = [].concat(res.data);
           this.setState({ users: data });
         })
-        .catch((error) => console.log(error));
+        // .catch((error) => console.log(error));
     } catch (error) {
       throw error;
     }
@@ -82,15 +82,15 @@ class InviteModal extends Component {
   inviteUsers = async (event) => {
     event.preventDefault();
     try {
-      console.log(this.state);
-      console.log("props : ", this.props);
+      // console.log(this.state);
+      // console.log("props : ", this.props);
       const res = await axiosInstance.put(
         `/channels/${this.props.channel.channelId}/invite`,
         {
           members: [].concat(this.state.members),
         }
       );
-      console.log(res);
+      // console.log(res);
       this.props.hide();
       //window.location.href = '/'
       //return res;
@@ -101,7 +101,7 @@ class InviteModal extends Component {
   };
 
   render() {
-    console.log(this.state.members);
+    // console.log(this.state.members);
     return (
       <div>
         <Modal show={this.props.show} onHide={this.hide} animation={false}>
