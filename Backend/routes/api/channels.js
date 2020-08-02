@@ -15,6 +15,7 @@ const {
   updateChannel,
   inviteMembers,
   createPost,
+  getPosts,
 } = require("../../controllers/channelControllers");
 
 // @route       POST api/channels
@@ -66,5 +67,7 @@ router.post(
   [auth, check("message", "Post Message is Required").not().isEmpty()],
   createPost
 );
+
+router.get("/:id/posts", auth, getPosts);
 
 module.exports = router;

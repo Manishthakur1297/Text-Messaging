@@ -31,20 +31,6 @@ exports.addChannel = async (req, res) => {
 // @route       GET api/Channels
 // @desc        GET ALL Channels
 // @access      Private
-exports.listChannels1 = async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id).select("-password");
-    const channels = await Channel.find().sort({ createdAt: -1 });
-    return res.json(channels);
-  } catch (error) {
-    console.log(error.message);
-    res.status(500).send("Server Error!!");
-  }
-};
-
-// @route       GET api/Channels
-// @desc        GET ALL Channels
-// @access      Private
 exports.listChannels = async (req, res) => {
   try {
     const channels = await Channel.aggregate([
@@ -84,7 +70,7 @@ exports.listChannels = async (req, res) => {
       {
         $group: {
           _id: "$name",
-          channel: { $first: "$_id" },
+          channelId: { $first: "$_id" },
           count: { $sum: 1 },
         },
       },
@@ -213,6 +199,7 @@ exports.inviteMembers = async (req, res) => {
     const channel = await Channel.findById(req.params.id);
 
     if (!channel) {
+      console.log("Channel Not Found");
       return res.status(404).json({ msg: "Channel Not Found!!!" });
     }
 
@@ -222,12 +209,20 @@ exports.inviteMembers = async (req, res) => {
 
     const channelFields = {};
 
-    if (members) channelFields.members = [...channel.members, ...members];
-    // console.log(req.user.id);
-    // console.log(channel.user._id);
-    if (req.user.id !== channel.user._id.toString()) {
-      return res.status(404).json({ msg: "User Not Authorised!!!" });
+    let newMembers = [...channel.members];
+
+    for (i = 0; i < members.length; i++) {
+      const currentId = newMembers.indexOf(members[i]);
+      if (currentId == -1) {
+        newMembers.push(members[i]);
+      }
     }
+
+    if (members) channelFields.members = newMembers;
+    // if (req.user.id !== channel.user._id.toString()) {
+    //   console.log("User not Authorised");
+    //   return res.status(404).json({ msg: "User Not Authorised!!!" });
+    // }
 
     const updateChannel = await Channel.findOneAndUpdate(
       { _id: req.params.id },
@@ -277,7 +272,35 @@ exports.createPost = async (req, res) => {
   }
 };
 
-//top 5
+// @route       GET api/channels/:id/posts
+// @desc        GET ALL POSTS
+// @access      Private
+exports.getPosts = async (req, res) => {
+  try {
+    const channel = await Channel.findById(req.params.id);
+    if (!channel) {
+      return res.status(404).json({ msg: "Channel Not Found!!!" });
+    }
+
+    const posts = await Post.aggregate([
+      {
+        $match: {
+          $expr: {
+            $eq: ["$channel", mongoose.Types.ObjectId(req.params.id)],
+          },
+        },
+      },
+      { $sort: { createdAt: 1 } },
+    ]);
+    return res.json({ posts });
+  } catch (error) {
+    if (error.kind === "ObjectId") {
+      return res.status(404).json({ msg: "Channel Not Found!!!" });
+    }
+    console.log(error.message);
+    res.status(500).send("Server Error!!");
+  }
+};
 
 // @route       GET api/Channels
 // @desc        GET ALL Channels

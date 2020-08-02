@@ -1,0 +1,149 @@
+.form-data {
+    background: #000;
+    padding: 1px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.form-input {
+    border: 0;
+    padding: 8px;
+    width: 90%;
+}
+
+.form-button {
+    width: 10%;
+    color: white;
+    background: rgb(8, 164, 175);
+    border: none;
+    padding: 8px;
+}
+
+/* Global Styles */
+:root {
+    --primary-color: #17a2b8;
+    --dark-color: #343a40;
+    --light-color: #f4f4f4;
+    --danger-color: #dc3545;
+    --success-color: #28a745;
+}
+
+
+.wrapper {
+    display: grid;
+    /* grid-template-columns: repeat(1, 1fr); */
+    grid-gap: 1px;
+    /* grid-auto-rows: 100px 200px; */
+}
+
+.title-bar {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    padding: 5px;
+    /* margin: 5px; */
+    height: 40px;
+    box-shadow: 0 4px 4px rgb(0, 0, 0);
+    display: block;
+    border: 1px solid white;
+    background-color: rgb(8, 164, 175);
+    color: white;
+
+}
+
+.row-block {
+    /* border: 1px dashed #343a40; */
+    margin: 20px;
+    padding: 20px;
+    width: 100%;
+    height: 85vh;
+    background-color: #eee;
+}
+
+.col-block {
+    border: 1px ridge #343a40;
+    margin-left: 10px;
+    /* padding: 20px; */
+    color: rgb(37, 36, 36);
+    background: rgb(241, 250, 250);
+}
+
+.col-block-empty {
+    background: #eee;
+}
+
+.channel-item {
+    /* left: 0; */
+    width: 100%;
+    padding: 5px;
+    margin-top: 3px;
+    /* margin: 5px; */
+    cursor: pointer;
+    box-shadow: 0 4px 4px rgb(0, 0, 0);
+    display: inline-block;
+    border: 1px solid white;
+    background-color: rgb(8, 164, 175);
+    color: white;
+
+}
+
+.post-box {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 65vh;
+    margin: 5px;
+    margin-right: 0;
+    margin-top: 50px;
+}
+
+.box-list {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 79vh;
+}
+
+.message {
+    display: block;
+}
+
+.message-left {
+    background-color: white;
+    float: left;
+    padding: 5px;
+    word-break: break-all;
+
+}
+
+.message-right {
+    background-color: rgba(166, 250, 179, 0.705);
+    float: right;
+    padding: 5px;
+    word-break: break-all;
+}
+
+.clear {
+    clear: both;
+}
+
+.block {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #af4c4c;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 17px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.invite-right {
+    background-color: rgb(26, 173, 87);
+    float: right;
+    color: #fff;
+    border: 1px solid #fff;
+    ;
+}

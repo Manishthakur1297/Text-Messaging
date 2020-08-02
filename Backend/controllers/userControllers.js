@@ -85,6 +85,8 @@ exports.topUsers = async (req, res) => {
 
     let dateQuery = { createdAt: { $gte: date1, $lte: date2 } };
 
+    console.log(req.query);
+
     let d1 = req.query.date1;
     let d2 = req.query.date2;
 
@@ -101,7 +103,7 @@ exports.topUsers = async (req, res) => {
 
     //Top 5 users which have the most number of posts.
 
-    const posts = await Post.aggregate([
+    const users = await Post.aggregate([
       {
         $match: {
           createdAt: dateQuery["createdAt"],
@@ -125,6 +127,7 @@ exports.topUsers = async (req, res) => {
       },
       { $project: { _id: 0, username: "$username", count: 1 } },
       { $sort: { count: -1 } },
+      { $limit: 5 },
     ]);
 
     //Top 5 trending channels that have the most number of posts along with the number of posts per channel
@@ -153,6 +156,7 @@ exports.topUsers = async (req, res) => {
       },
       { $project: { _id: 0, name: "$name", count: 1 } },
       { $sort: { count: -1 } },
+      { $limit: 5 },
     ]);
 
     //Top 5 trending tags which are tagged on the most number of channels.
@@ -168,6 +172,7 @@ exports.topUsers = async (req, res) => {
       { $group: { _id: "$tags", count: { $sum: 1 } } },
       { $project: { _id: 0, tags: "$_id", count: 1 } },
       { $sort: { count: -1 } },
+      { $limit: 5 },
     ]);
 
     //Top 5 trending regions which have the most number of active users.
@@ -182,10 +187,13 @@ exports.topUsers = async (req, res) => {
       { $group: { _id: "$region", count: { $sum: 1 } } },
       { $project: { _id: 0, region: "$_id", count: 1 } },
       { $sort: { count: -1 } },
+      { $limit: 5 },
     ]);
 
+    // console.log(users);
+
     return res.json({
-      posts,
+      users,
       channels,
       tags,
       regions,
