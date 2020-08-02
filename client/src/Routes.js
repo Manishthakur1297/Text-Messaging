@@ -74,19 +74,19 @@ class Routes extends Component {
               <PublicRoute
                 restricted={true}
                 exact
-                path={"/login/"}
+                path={"/login"}
                 component={Login}
               />
               <PublicRoute
                 restricted={true}
                 exact
-                path={"/signup/"}
+                path={"/signup"}
                 component={Signup}
               />
-              <PrivateRoute exact path={"/dashboard/"} component={Dashboard} />
-              <PrivateRoute exact path={"/users/"} component={User} />
-              <PrivateRoute exact path={"/metrics/"} component={Metrics} />
-              <PrivateRoute exact path={"/create/"} component={Channel} />
+              <PrivateRoute exact path={"/dashboard"} component={Dashboard} />
+              <PrivateRoute exact path={"/users"} component={User} />
+              <PrivateRoute exact path={"/metrics"} component={Metrics} />
+              <PrivateRoute exact path={"/create"} component={Channel} />
               <PublicRoute restricted={true} path={"/"} component={Login} />
             </Switch>
           </BrowserRouter>
