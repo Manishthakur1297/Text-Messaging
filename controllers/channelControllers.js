@@ -209,7 +209,9 @@ exports.inviteMembers = async (req, res) => {
 
     const channelFields = {};
 
-    let newMembers = [...channel.members];
+    let newMembers = [...channel.members].map((m) => m.toString());
+
+    // console.log(newMembers);
 
     for (i = 0; i < members.length; i++) {
       const currentId = newMembers.indexOf(members[i]);

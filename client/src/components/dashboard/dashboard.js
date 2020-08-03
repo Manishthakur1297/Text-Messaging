@@ -136,7 +136,13 @@ const Chat = () => {
           <Col xs={1} className="col-block-empty" />
         </Row>
       ) : (
-        <div className="text-center no-channels">No channels to show.</div>
+        <div className="text-center no-channels">
+          No channels Created or Joined Yet by User....
+          <br />
+          <br />
+          <br />
+          Create Channel using Create Tab
+        </div>
       )}
     </Container>
   );
